@@ -1,8 +1,6 @@
 import ErrorBoundary from '@/app/error';
 
-export const APIkey =
-  '9e5c52c55ca260431f656426ff9c726b';
-
+const APIkey = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY || '';
 
 export async function getSearchCity(city: string, code: string = 'BG', limit: number = 5) {
     const countryCode = code ? `,${code}` : ``;
