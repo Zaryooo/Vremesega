@@ -19,6 +19,8 @@ export const getWeatherIconPosition = (weatherCondition: string, isDay: boolean)
             return '-300px 0';
         case 'snow':
             return '-227px -192px';
+        case 'light snow':
+            return '-155px -68px';
         case 'mist':
             return '-300px 0';
         default:

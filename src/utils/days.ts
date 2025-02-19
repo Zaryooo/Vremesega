@@ -39,6 +39,7 @@ export const forecastDays = (forecast: any, days: number, start: number = 0) => 
 
     const maxTemp = dayForecast && dayForecast?.filter((item: any) => item.main.temp_max === Math.max(...dayForecast.map((item: any) => item.main.temp_max)));
     const minTemp = dayForecast && dayForecast?.filter((item: any) => item.main.temp_min === Math.min(...dayForecast.map((item: any) => item.main.temp_min)));
+    const snow = dayForecast && dayForecast?.filter((item: any) => item.snow);
 
     forecastDays.push({
       date: nextDate,
@@ -46,7 +47,8 @@ export const forecastDays = (forecast: any, days: number, start: number = 0) => 
       dayName,
       maxTemp: maxTemp[0].main.temp_max,
       minTemp: minTemp[0].main.temp_min,
-      forecast: dayForecast
+      forecast: dayForecast,
+      snow: snow.length > 0
     });
   }
   return forecastDays;

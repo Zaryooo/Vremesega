@@ -50,12 +50,9 @@ const CityPage = (props: CityPageProps) => {
       const result = await getSearchCity(city);
       if (result?.length) {
           const {lat, lon} = result[0];
-          console.log("City selected", result[0]);
           setCityName({ bg: result[0].local_names.bg });
           fetchFiveDaysForecast(lat, lon);
           fetchCurrentForecast(lat, lon);
-      } else {
-          console.log("City not found")
       }
   }
 

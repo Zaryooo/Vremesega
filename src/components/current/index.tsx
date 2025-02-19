@@ -1,6 +1,6 @@
 'use client';	
 
-import { getHours, getHoursAndMinutes } from '@/utils/date';
+import { getDayHours, getHoursAndMinutes } from '@/utils/date';
 import { isDaytime } from '@/utils/days';
 import { getWeatherCondition, getWeatherIconPosition } from '@/utils/weather';
 import React, { useEffect, useState } from 'react';
@@ -12,9 +12,7 @@ interface CurrentWeatherProps {
 
 export default function CurrentWeather({forecast, city}: CurrentWeatherProps) {
   
-  console.log("CurrentWeather", forecast, city);
-
-  let isDay = forecast && forecast.sys ? isDaytime(Number(getHours(forecast.dt)), Number(getHours(forecast.sys.sunrise)), Number(getHours(forecast.sys.sunset))) : true;
+  let isDay = forecast && forecast.sys ? isDaytime(Number(getDayHours(forecast.dt)), Number(getDayHours(forecast.sys.sunrise)), Number(getDayHours(forecast.sys.sunset))) : true;
   return (
     <>
             {city && <h2 className='mb-4 font-bold text-[26px]'>{city.bg}</h2>}
