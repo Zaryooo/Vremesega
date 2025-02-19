@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Super Shiny';
+    src: url('/fonts/CustomFont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .super-shiny {
+    font-family: 'Super Shiny', sans-serif;
+  }
+
+  .logo {
+    color: #b33300;
+  }

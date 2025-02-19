@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --background-opacity: 0.9;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,16 +19,40 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-image: url(../../public/bg/autumn-blured.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+ 
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.header {
+  @apply mt-5;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
+.wrapper {
+  background: rgb(var(--background-end-rgb), var(--background-opacity));
+}
+
+.raund {
+  @apply my-5 p-5 rounded-lg;
+}
+
+.weather-icon {
+  width: 60px; /* Width of a single icon */
+  height: 60px; /* Height of a single icon */
+  background-image: url('../../public/set/weather-sprite.png');
+  background-repeat: no-repeat;
 }

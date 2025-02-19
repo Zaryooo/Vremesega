@@ -1,0 +1,362 @@
+[
+{
+    "city": "Sofia",
+    "city_cyrillic": "София"
+  },
+  {
+    "city": "Varna",
+    "city_cyrillic": "Варна"
+  },
+  {
+    "city": "Plovdiv",
+    "city_cyrillic": "Пловдив"
+  },
+  {
+    "city": "Burgas",
+    "city_cyrillic": "Бургас"
+  },
+  {
+    "city": "Ruse",
+    "city_cyrillic": "Русе"
+  },
+  {
+    "city": "Stara Zagora",
+    "city_cyrillic": "Стара Загора"
+  },
+  {
+    "city": "Pleven",
+    "city_cyrillic": "Плевен"
+  },
+  {
+    "city": "Sliven",
+    "city_cyrillic": "Сливен"
+  },
+  {
+    "city": "Pernik",
+    "city_cyrillic": "Перник"
+  },
+  {
+    "city": "Pazardzhik",
+    "city_cyrillic": "Пазарджик"
+  },
+  {
+    "city": "Dobrich",
+    "city_cyrillic": "Добрич"
+  },
+  {
+    "city": "Shumen",
+    "city_cyrillic": "Шумен"
+  },
+  {
+    "city": "Haskovo",
+    "city_cyrillic": "Хасково"
+  },
+  {
+    "city": "Yambol",
+    "city_cyrillic": "Ямбол"
+  },
+  {
+    "city": "Blagoevgrad",
+    "city_cyrillic": "Благоевград"
+  },
+  {
+    "city": "Veliko Tarnovo",
+    "city_cyrillic": "Велико Търново"
+  },
+  {
+    "city": "Vratsa",
+    "city_cyrillic": "Враца"
+  },
+  {
+    "city": "Gabrovo",
+    "city_cyrillic": "Габрово"
+  },
+  {
+    "city": "Targovishte",
+    "city_cyrillic": "Търговище"
+  },
+  {
+    "city": "Kardzhali",
+    "city_cyrillic": "Кърджали"
+  },
+  {
+    "city": "Vidin",
+    "city_cyrillic": "Видин"
+  },
+  {
+    "city": "Razgrad",
+    "city_cyrillic": "Разград"
+  },
+  {
+    "city": "Montana",
+    "city_cyrillic": "Монтана"
+  },
+  {
+    "city": "Kyustendil",
+    "city_cyrillic": "Кюстендил"
+  },
+  {
+    "city": "Lovech",
+    "city_cyrillic": "Ловеч"
+  },
+  {
+    "city": "Silistra",
+    "city_cyrillic": "Силистра"
+  },
+  {
+    "city": "Smolyan",
+    "city_cyrillic": "Смолян"
+  },
+  {
+    "city": "Sandanski",
+    "city_cyrillic": "Сандански"
+  },
+  {
+    "city": "Dupnitsa",
+    "city_cyrillic": "Дупница"
+  },
+  {
+    "city": "Gorna Oryahovitsa",
+    "city_cyrillic": "Горна Оряховица"
+  },
+  {
+    "city": "Svishtov",
+    "city_cyrillic": "Свищов"
+  },
+  {
+    "city": "Asenovgrad",
+    "city_cyrillic": "Асеновград"
+  },
+  {
+    "city": "Kazanlak",
+    "city_cyrillic": "Казанлък"
+  },
+  {
+    "city": "Karlovo",
+    "city_cyrillic": "Карлово"
+  },
+  {
+    "city": "Petrich",
+    "city_cyrillic": "Петрич"
+  },
+  {
+    "city": "Samokov",
+    "city_cyrillic": "Самоков"
+  },
+  {
+    "city": "Sevlievo",
+    "city_cyrillic": "Севлиево"
+  },
+  {
+    "city": "Troyan",
+    "city_cyrillic": "Троян"
+  },
+  {
+    "city": "Aytos",
+    "city_cyrillic": "Айтос"
+  },
+  {
+    "city": "Botevgrad",
+    "city_cyrillic": "Ботевград"
+  },
+  {
+    "city": "Gotse Delchev",
+    "city_cyrillic": "Гоце Делчев"
+  },
+  {
+    "city": "Karnobat",
+    "city_cyrillic": "Карнобат"
+  },
+  {
+    "city": "Panagyurishte",
+    "city_cyrillic": "Панагюрище"
+  },
+  {
+    "city": "Peshtera",
+    "city_cyrillic": "Пещера"
+  },
+  {
+    "city": "Popovo",
+    "city_cyrillic": "Попово"
+  },
+  {
+    "city": "Radomir",
+    "city_cyrillic": "Радомир"
+  },
+  {
+    "city": "Rakovski",
+    "city_cyrillic": "Раковски"
+  },
+  {
+    "city": "Svilengrad",
+    "city_cyrillic": "Свиленград"
+  },
+  {
+    "city": "Teteven",
+    "city_cyrillic": "Тетевен"
+  },
+  {
+    "city": "Tryavna",
+    "city_cyrillic": "Трявна"
+  },
+  {
+    "city": "Tutrakan",
+    "city_cyrillic": "Тутракан"
+  },
+  {
+    "city": "Velingrad",
+    "city_cyrillic": "Велинград"
+  },
+  {
+    "city": "Zlatograd",
+    "city_cyrillic": "Златоград"
+  },
+  {
+    "city": "Belene",
+    "city_cyrillic": "Белене"
+  },
+  {
+    "city": "Belogradchik",
+    "city_cyrillic": "Белоградчик"
+  },
+  {
+    "city": "Berkovitsa",
+    "city_cyrillic": "Берковица"
+  },
+  {
+    "city": "Byala",
+    "city_cyrillic": "Бяла"
+  },
+  {
+    "city": "Cherven Bryag",
+    "city_cyrillic": "Червен бряг"
+  },
+  {
+    "city": "Chirpan",
+    "city_cyrillic": "Чирпан"
+  },
+  {
+    "city": "Dimitrovgrad",
+    "city_cyrillic": "Димитровград"
+  },
+  {
+    "city": "Dolna Mitropoliya",
+    "city_cyrillic": "Долна Митрополия"
+  },
+  {
+    "city": "Elhovo",
+    "city_cyrillic": "Елхово"
+  },
+  {
+    "city": "Etropole",
+    "city_cyrillic": "Етрополе"
+  },
+  {
+    "city": "Ihtiman",
+    "city_cyrillic": "Ихтиман"
+  },
+  {
+    "city": "Isperih",
+    "city_cyrillic": "Исперих"
+  },
+  {
+    "city": "Kavarna",
+    "city_cyrillic": "Каварна"
+  },
+  {
+    "city": "Kozloduy",
+    "city_cyrillic": "Козлодуй"
+  },
+  {
+    "city": "Kubrat",
+    "city_cyrillic": "Кубрат"
+  },
+  {
+    "city": "Levski",
+    "city_cyrillic": "Левски"
+  },
+  {
+    "city": "Lom",
+    "city_cyrillic": "Лом"
+  },
+  {
+    "city": "Mezdra",
+    "city_cyrillic": "Мездра"
+  },
+  {
+    "city": "Nesebar",
+    "city_cyrillic": "Несебър"
+  },
+  {
+    "city": "Nova Zagora",
+    "city_cyrillic": "Нова Загора"
+  },
+  {
+    "city": "Omurtag",
+    "city_cyrillic": "Омуртаг"
+  },
+  {
+    "city": "Pavlikeni",
+    "city_cyrillic": "Павликени"
+  },
+  {
+    "city": "Provadiya",
+    "city_cyrillic": "Провадия"
+  },
+  {
+    "city": "Radnevo",
+    "city_cyrillic": "Раднево"
+  },
+  {
+    "city": "Rakitovo",
+    "city_cyrillic": "Ракитово"
+  },
+  {
+    "city": "Simeonovgrad",
+    "city_cyrillic": "Симеоновград"
+  },
+  {
+    "city": "Slivnitsa",
+    "city_cyrillic": "Сливница"
+  },
+  {
+    "city": "Sopot",
+    "city_cyrillic": "Сопот"
+  },
+  {
+    "city": "Straldzha",
+    "city_cyrillic": "Стралджа"
+  },
+  {
+    "city": "Suvorovo",
+    "city_cyrillic": "Суворово"
+  },
+  {
+    "city": "Tvarditsa",
+    "city_cyrillic": "Твърдица"
+  },
+  {
+    "city": "Ugarchin",
+    "city_cyrillic": "Угърчин"
+  },
+  {
+    "city": "Valchedram",
+    "city_cyrillic": "Вълчедръм"
+  },
+  {
+    "city": "Varshets",
+    "city_cyrillic": "Вършец"
+  },
+  {
+    "city": "Zavet",
+    "city_cyrillic": "Завет"
+  },
+  {
+    "city": "Zemen",
+    "city_cyrillic": "Земен"
+  },
+  {
+    "city": "Zlatitsa",
+    "city_cyrillic": "Златица"
+  }
+]
