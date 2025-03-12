@@ -27,26 +27,10 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
   const calculateChanceOfRain = (
     clouds: number,
     humidity: number,
-    precipitation: number
+    pressure: number
   ) => {
-    let chanceOfRain = 0;
+    const chanceOfRain = (0.6 * clouds) + (0.3 * humidity) + (1013 - pressure);
 
-    // Increase chance of rain based on cloud cover
-    if (clouds > 50) {
-      chanceOfRain += (clouds - 50) * 0.5;
-    }
-
-    // Increase chance of rain based on humidity
-    if (humidity > 70) {
-      chanceOfRain += (humidity - 70) * 0.3;
-    }
-
-    // Increase chance of rain based on precipitation forecast
-    if (precipitation > 0) {
-      chanceOfRain += precipitation * 10;
-    }
-
-    // Ensure the chance of rain does not exceed 100%
     return Math.min(chanceOfRain, 100);
   };
 
@@ -188,8 +172,8 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                                       {Math.round(
                                         calculateChanceOfRain(
                                           item.clouds.all,
-                                          item.humidity,
-                                          rain3h || rain1h
+                                          item.main.humidity,
+                                          item.main.pressure
                                         )
                                       )}{' '}
                                       %

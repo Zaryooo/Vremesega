@@ -9,12 +9,12 @@ export const getWeatherIconPosition = (weatherCondition: string, isDay: boolean)
             return isDay ? '-226px -11px' : '-156px -126px';
         case 'broken clouds':
         case 'overcast clouds':
-            return '-155px -11px';
+            return isDay ? '-155px -11px' : '-156px -126px';
         case 'shower rain':
-            return '-200px 0';
+            return isDay ? '-200px 0' : '-227px -126px';
         case 'light rain':
         case 'moderate rain':
-            return '-155px -68px';
+            return isDay ? '-155px -68px' : '-227px -126px';
         case 'thunderstorm':
             return '-300px 0';
         case 'snow':
