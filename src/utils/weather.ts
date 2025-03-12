@@ -22,7 +22,8 @@ export const getWeatherIconPosition = (weatherCondition: string, isDay: boolean)
         case 'light snow':
             return '-155px -68px';
         case 'mist':
-            return '-300px 0';
+        case 'fog':
+            return '-160px -190px';
         default:
             return ''; // Default to no icon if condition is unknown
     }
@@ -56,6 +57,7 @@ export const getWeatherIconPosition = (weatherCondition: string, isDay: boolean)
       case 'heavy snow':
           return 'Силен снеговалеж';
       case 'mist':
+      case 'fog':
           return 'Мъгла';
       default:
           return 'Слънчево'; // Default to sunny if condition is unknown

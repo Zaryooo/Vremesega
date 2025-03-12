@@ -7,6 +7,7 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --background-opacity: 0.9;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,7 +20,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-image: url(../../public/bg/autumn-blured.jpg);
+  background-image: url(../../public/bg/winter.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -33,12 +34,13 @@ body {
 }
 
 .header {
-  @apply mt-5;
+  margin-top: 1.25rem;
 }
 
 .container {
   margin-left: auto;
   margin-right: auto;
+  padding: 0 1.5rem;
   max-width: 1200px;
 }
 
@@ -55,4 +57,12 @@ body {
   height: 60px; /* Height of a single icon */
   background-image: url('../../public/set/weather-sprite.png');
   background-repeat: no-repeat;
+}
+
+.logo {
+  color: #7d7d7d;
+}
+
+.city-box {
+  color: #353535;
 }

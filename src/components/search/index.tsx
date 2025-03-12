@@ -2,8 +2,8 @@
 
 import SearchIcon from '@mui/icons-material/Search';
 import { Autocomplete, Button, TextField } from '@mui/material';
-import { usePathname, useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 import cities from '@/data/cities.json';
 
 export default function Search() {
@@ -12,7 +12,6 @@ export default function Search() {
     const [suggest, setSuggest] = React.useState<string[]>([]);
 
     const {replace} = useRouter();
-    const pathname = usePathname();
 
     const isCyrillic = (text: string) => /[а-яА-ЯЁё]/.test(text);
     const isLatin = (text: string) => /[a-zA-Z]/.test(text);

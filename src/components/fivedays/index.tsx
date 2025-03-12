@@ -10,14 +10,16 @@ import { forecastDays, getNextDate, isDaytime } from '@/utils/days';
 import { ForecastProps } from '@/lib/forecast';
 import { getMonthInCyrillic } from '@/utils/translate';
 import { getWeatherCondition, getWeatherIconPosition } from '@/utils/weather';
+import useViewport from '@/hooks/useViewport';
 
 export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
   const [value, setValue] = React.useState(getNextDate(1).nextDay);
+  const { isMobile } = useViewport();
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
-  console.log(forecast);
+  console.log("isMobile", isMobile);
 
   // Get forecast for the next 5 days + today
   const fiveDaysForecast = forecast ? forecastDays(forecast, 6) : null;
@@ -71,7 +73,9 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                 onChange={handleChange}
                 aria-label='Days'
                 className='w-full grid grid-cols-6'
-                variant="fullWidth"
+                variant={isMobile ? "scrollable" : "fullWidth"}
+                scrollButtons
+                allowScrollButtonsMobile
               >
                 {fiveDaysForecast &&
                   fiveDaysForecast.map((item: any) => {
@@ -94,7 +98,6 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
             {fiveDaysForecast &&
               fiveDaysForecast.map((item: any) => {
                 const date = `${item.date} ${getMonthInCyrillic(item.mounth)}`;
-                console.log("item", item);
                 return (
                   item.date && (
                     <TabPanel key={item.date} value={item.date}>
@@ -106,7 +109,7 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                             </div>
                             <p className='mt-4 mb-10'>Времето</p>
                             <p className='mb-7'>Прогноза</p>
-                            <p className='mb-8'>Температура</p>
+                            <p className='mb-7'>Температура</p>
                             <p className='mt-8'>Вятър</p>
                             <p className='mt-6'>Вероятност за валежи</p>
                             <p className='mt-6'>
@@ -170,9 +173,9 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                                       isDay
                                     )}`}</p>
                                   </div>
-                                  <div className='temp mb-9'>
+                                  <div className='temp mb-8'>
                                     <span className='font-bold'>
-                                      {Math.round(item.main.temp_max)}°
+                                      {Math.round(item.main.temp)}°
                                     </span>
                                   </div>
                                   <div className='wind mb-6'>

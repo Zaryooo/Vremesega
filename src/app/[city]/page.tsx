@@ -3,7 +3,7 @@
 import { useEffect, useState, use } from 'react';
 import CurrentWeather from '@/components/current';
 import { getCurrentWeather, getFiveDaysForecast, getSearchCity } from '@/api/search';
-import ThreeDaysMax from '@/components/threedaysMax';
+import ThreeDays from '@/components/threedays';
 import FiveDaysForecast from '@/components/fivedays';
 
 interface CityPageProps {
@@ -89,8 +89,7 @@ const CityPage = (props: CityPageProps) => {
                   <CurrentWeather forecast={currentForecast} city={cityName || { bg: '' }}/>
                 </div>
                 <div className='wrapper raund three-days-max col-span-7'>
-                
-                  <ThreeDaysMax forecast={fiveDaysForecast} />
+                  <ThreeDays forecast={fiveDaysForecast} />
                 </div>
               </div>
             </div>

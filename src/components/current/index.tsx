@@ -13,9 +13,10 @@ interface CurrentWeatherProps {
 export default function CurrentWeather({forecast, city}: CurrentWeatherProps) {
   
   let isDay = forecast && forecast.sys ? isDaytime(Number(getDayHours(forecast.dt)), Number(getDayHours(forecast.sys.sunrise)), Number(getDayHours(forecast.sys.sunset))) : true;
+  console.log("isDay", isDay);
   return (
     <>
-            {city && <h2 className='mb-4 font-bold text-[26px]'>{city.bg}</h2>}
+            {city && <h2 className='city-box mb-4 font-bold text-[26px]'>{city.bg}</h2>}
             {forecast && (
                 <div key={forecast.dt} className='grid grid-cols-2'>
                   <div className='flex flex-col'>
