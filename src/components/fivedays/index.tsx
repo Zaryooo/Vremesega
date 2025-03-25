@@ -19,19 +19,13 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
     setValue(newValue);
   };
 
-  console.log("isMobile", isMobile);
-
   // Get forecast for the next 5 days + today
   const fiveDaysForecast = forecast ? forecastDays(forecast, 6) : null;
 
   const calculateChanceOfRain = (
-    clouds: number,
-    humidity: number,
-    pressure: number
+    pop: number,
   ) => {
-    const chanceOfRain = (0.6 * clouds) + (0.3 * humidity) + (1013 - pressure);
-
-    return Math.min(chanceOfRain, 100);
+    return Math.min(pop * 100, 100);
   };
 
   const TabLabel = ({ dayName, date }: { dayName: string; date: string }) => {
@@ -170,11 +164,7 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                                   <div className='rain-chance mb-6'>
                                     <span className=''>
                                       {Math.round(
-                                        calculateChanceOfRain(
-                                          item.clouds.all,
-                                          item.main.humidity,
-                                          item.main.pressure
-                                        )
+                                        calculateChanceOfRain(item.pop)
                                       )}{' '}
                                       %
                                     </span>
