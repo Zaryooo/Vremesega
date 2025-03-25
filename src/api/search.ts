@@ -12,7 +12,7 @@ export async function getSearchCity(city: string, code: string = 'BG', limit: nu
     };
     try {
       const response = await fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${city}${countryCode}&limit=${limit}&appid=${APIkey}`,
+        `https://api.openweathermap.org/geo/1.0/direct?q=${city}${countryCode}&limit=${limit}&appid=${APIkey}`,
         options
       );
       const data = await response.json();
