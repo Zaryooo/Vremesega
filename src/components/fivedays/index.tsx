@@ -12,6 +12,16 @@ import { getMonthInCyrillic } from '@/utils/translate';
 import { getWeatherCondition, getWeatherIconPosition } from '@/utils/weather';
 import useViewport from '@/hooks/useViewport';
 
+type Rain = {
+  '1h': number;
+  '3h': number;
+};
+
+type Snow = {
+  '1h': number;
+  '3h': number;
+};
+
 export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
   const [value, setValue] = React.useState(getNextDate(1).nextDay);
   const { isMobile } = useViewport();
@@ -22,10 +32,29 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
   // Get forecast for the next 5 days + today
   const fiveDaysForecast = forecast ? forecastDays(forecast, 6) : null;
 
-  const calculateChanceOfRain = (
-    pop: number,
-  ) => {
+  const calculateChanceOfRain = (pop: number) => {
     return Math.min(pop * 100, 100);
+  };
+
+  const isRaining = (rain?: Rain, snow?: Snow) => {
+    const rain3h = rain && rain['3h'] ? rain['3h'] : 0;
+    const rain1h = rain && rain['1h'] ? rain['1h'] : 0;
+    const snow3h = snow && snow['3h'] ? snow['3h'] : 0;
+    const snow1h = snow && snow['1h'] ? snow['1h'] : 0;
+    return {
+      rain1h,
+      rain3h,
+      snow1h,
+      snow3h,
+    };
+  };
+
+  const isDay = (dt: number, sunrise: number, sunset: number) => {
+    return isDaytime(
+      Number(getDayUTCHours(dt)),
+      Number(getDayUTCHours(sunrise)),
+      Number(getDayUTCHours(sunset))
+    );
   };
 
   const TabLabel = ({ dayName, date }: { dayName: string; date: string }) => {
@@ -51,7 +80,7 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                 onChange={handleChange}
                 aria-label='Days'
                 className='w-full grid grid-cols-6'
-                variant={isMobile ? "scrollable" : "fullWidth"}
+                variant={isMobile ? 'scrollable' : 'fullWidth'}
                 scrollButtons
                 allowScrollButtonsMobile
               >
@@ -82,116 +111,94 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                       <div className='date-hours pt-2' key={item.date}>
                         <div className='hours grid grid-cols-10'>
                           <div className='legend col-span-2'>
-                            <div className='date mt-1 pb-3 font-bold'>
-                              {date}
+                            <div className='grid grid-flow-row grid-rows-[minmax(30px,1fr)_60px_45px_40px] gap-5'>
+                              <div className='date font-bold'>{date}</div>
+                              <p className='row-span-2 flex items-center'>
+                                Прогноза
+                              </p>
+                              <p className=''>Температура</p>
+                              <p className=''>Вятър</p>
+                              <p className=''>Вероятност за валежи</p>
+                              <p className=''>
+                                {item.snow
+                                  ? `Количество сняг`
+                                  : `Количество валежи`}
+                              </p>
+                              <p className=''>Облачност</p>
+                              <p className=''>Влажност</p>
+                              <p className=''>Атмосфетно налягане</p>
                             </div>
-                            <p className='mt-4 mb-10'>Времето</p>
-                            <p className='mb-7'>Прогноза</p>
-                            <p className='mb-7'>Температура</p>
-                            <p className='mt-8'>Вятър</p>
-                            <p className='mt-6'>Вероятност за валежи</p>
-                            <p className='mt-6'>
-                              {item.snow ? `Количество сняг` : `Количество валежи`}
-                            </p>
-                            <p className='mt-6'>Облачност</p>
-                            <p className='mt-6'>Влажност</p>
-                            <p className='mt-6'>Атмосфетно налягане</p>
                           </div>
                           {item.forecast &&
                             item.forecast.map((item: any) => {
-                              const isDay =
-                                city && city.sys
-                                  ? isDaytime(
-                                      Number(getDayHours(item.dt)),
-                                      Number(getDayHours(city.sys.sunrise)),
-                                      Number(getDayHours(city.sys.sunset))
-                                    )
-                                  : true;
-                              const rain3h =
-                                item.rain && item.rain['3h']
-                                  ? item.rain['3h']
-                                  : 0;
-                              const rain1h =
-                                item.rain && item.rain['1h']
-                                  ? item.rain['1h']
-                                  : 0;
-                              const snow3h =
-                                item.snow && item.snow['3h']
-                                  ? item.snow['3h']
-                                  : 0;
-                              const snow1h =
-                                item.snow && item.snow['1h']
-                                  ? item.snow['1h']
-                                  : 0;
                               return (
                                 <div
                                   key={item.dt}
-                                  className='hour flex flex-col items-center'
+                                  className='hour grid grid-flow-row grid-rows-[minmax(30px,1fr)_60px_45px_40px] gap-5 text-center justify-center'
                                 >
-                                  <div className='single-hour pt-1'>
+                                  <div className='single-hour'>
                                     <p>{`${getDayUTCHours(item.dt)}:00`}</p>
                                   </div>
+                                  <div className='my-auto flex items-center'>
+                                    <div
+                                      className={`weather-icon mx-auto ${item.weather[0].description.toLowerCase()}`}
+                                      aria-label={`${item.weather[0].main.toLowerCase()} icon`}
+                                      style={{
+                                        backgroundPosition:
+                                          getWeatherIconPosition(
+                                            item.weather[0].description.toLowerCase(),
+                                            isDay(
+                                              item.dt,
+                                              city.sys.sunrise,
+                                              city.sys.sunset
+                                            )
+                                          ),
+                                      }}
+                                    ></div>
+                                  </div>
                                   <div
-                                    className={`weather-icon mt-3 ${item.weather[0].description.toLowerCase()}`}
-                                    aria-label={`${item.weather[0].main.toLowerCase()} icon`}
-                                    style={{
-                                      backgroundPosition:
-                                        getWeatherIconPosition(
-                                          item.weather[0].description.toLowerCase(),
-                                          isDay
-                                        ),
-                                    }}
-                                  ></div>
-                                  <div
-                                    className={`weather mt-3 mb-6 flex items-center text-center text-[14px] leading-[16px] min-h-[34px] ${item.weather[0].description.toLowerCase()}`}
+                                    className={`weather flex items-center text-center text-[14px] ${item.weather[0].description.toLowerCase()}`}
                                     aria-label={`${item.weather[0].main.toLowerCase()}`}
                                   >
                                     <p>{`${getWeatherCondition(
                                       item.weather[0].description.toLowerCase(),
-                                      isDay
+                                      isDay(
+                                        item.dt,
+                                        city.sys.sunrise,
+                                        city.sys.sunset
+                                      )
                                     )}`}</p>
                                   </div>
-                                  <div className='temp mb-8'>
-                                    <span className='font-bold'>
+                                  <div className='temp font-bold'>
                                       {Math.round(item.main.temp)}°
-                                    </span>
                                   </div>
-                                  <div className='wind mb-6'>
-                                    <span className=''>
+                                  <div className='wind'>
                                       {Math.round(item.wind.speed)} m/s
-                                    </span>
                                   </div>
-                                  <div className='rain-chance mb-6'>
-                                    <span className=''>
+                                  <div className='rain-chance'>
                                       {Math.round(
                                         calculateChanceOfRain(item.pop)
                                       )}{' '}
                                       %
-                                    </span>
                                   </div>
-                                  <div className='rain mb-6'>
-                                    <span className=''>
-                                      {(item.rain && rain3h) ||
-                                        rain1h ||
-                                        (item.snow && snow3h) ||
-                                        snow1h}{' '}
-                                      mm
-                                    </span>
+                                  <div className='rain'>
+                                      {`${
+                                        (item.rain &&
+                                          isRaining(item.rain).rain3h) ||
+                                        isRaining(item.rain).rain1h ||
+                                        (item.snow &&
+                                          isRaining(item.snow).snow3h) ||
+                                        isRaining(item.snow).snow1h
+                                      } mm`}
                                   </div>
-                                  <div className='clouds mb-6'>
-                                    <span className=''>
+                                  <div className='clouds'>
                                       {item.clouds.all} %
-                                    </span>
                                   </div>
-                                  <div className='humidity mb-6'>
-                                    <span className=''>
+                                  <div className='humidity'>
                                       {item.main.humidity} %
-                                    </span>
                                   </div>
-                                  <div className='pressure mb-6'>
-                                    <span className=''>
+                                  <div className='pressure'>
                                       {item.main.pressure} hPa
-                                    </span>
                                   </div>
                                 </div>
                               );
