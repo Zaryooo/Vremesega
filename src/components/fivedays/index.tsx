@@ -1,6 +1,6 @@
 'use client';
 
-import { getDayHours, getDayUTCHours } from '@/utils/date';
+import { getDayUTCHours } from '@/utils/date';
 import React from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -65,6 +65,7 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
       </div>
     );
   };
+
 
   return (
     <>
@@ -149,15 +150,15 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                                             item.weather[0].description.toLowerCase(),
                                             isDay(
                                               item.dt,
-                                              city.sys.sunrise,
-                                              city.sys.sunset
+                                              city.sys ?? city.sys.sunrise,
+                                              city.sys ?? city.sys.sunset
                                             )
                                           ),
                                       }}
                                     ></div>
                                   </div>
                                   <div
-                                    className={`weather flex items-center text-center text-[14px] ${item.weather[0].description.toLowerCase()}`}
+                                    className={`weather flex items-center text-center justify-center text-[14px] ${item.weather[0].description.toLowerCase()}`}
                                     aria-label={`${item.weather[0].main.toLowerCase()}`}
                                   >
                                     <p>{`${getWeatherCondition(

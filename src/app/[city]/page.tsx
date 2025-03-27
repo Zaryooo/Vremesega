@@ -5,6 +5,7 @@ import CurrentWeather from '@/components/current';
 import { getCurrentWeather, getFiveDaysForecast, getSearchCity } from '@/api/search';
 import ThreeDays from '@/components/threedays';
 import FiveDaysForecast from '@/components/fivedays';
+import useViewport from '@/hooks/useViewport';
 
 interface CityPageProps {
   params: Promise<{
@@ -17,6 +18,7 @@ const CityPage = (props: CityPageProps) => {
   const [cityName, setCityName] = useState<{ bg: string } | null>(null);
   const [currentForecast, setCurrentForecast] = useState<{ lat: number; lng: number, city: any } | null>(null);
   const [fiveDaysForecast, setFiveDaysForecast] = useState<any>(undefined);
+  const { isMobile } = useViewport();
 
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -94,11 +96,11 @@ const CityPage = (props: CityPageProps) => {
               </div>
             </div>
           </div>
-          <div className='wrapper raund side-wrapper col-span-3'>
+          {!isMobile && <div className='wrapper raund side-wrapper col-span-3'>
             <div className='side'>
               <p>Ads</p>
             </div>
-          </div>
+          </div>}
         </div>
         <div className='wrapper raund'>
           <FiveDaysForecast forecast={fiveDaysForecast} city={currentForecast}/>
