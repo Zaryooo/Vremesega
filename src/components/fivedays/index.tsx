@@ -11,6 +11,10 @@ import { ForecastProps } from '@/lib/forecast';
 import { getMonthInCyrillic } from '@/utils/translate';
 import { getWeatherCondition, getWeatherIconPosition } from '@/utils/weather';
 import useViewport from '@/hooks/useViewport';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
 
 type Rain = {
   '1h': number;
@@ -49,7 +53,7 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
     };
   };
 
-  const isDay = (dt: number, sunrise: number, sunset: number) => {
+  const isDay = (dt: number, sunrise: number = 0, sunset: number = 0) => {
     return isDaytime(
       Number(getDayUTCHours(dt)),
       Number(getDayUTCHours(sunrise)),
@@ -66,6 +70,7 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
     );
   };
 
+  console.log("isMobile", isMobile);
 
   return (
     <>
@@ -111,8 +116,8 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                     <TabPanel key={item.date} value={item.date}>
                       <div className='date-hours pt-2' key={item.date}>
                         <div className='hours grid grid-cols-10'>
-                          <div className='legend col-span-2'>
-                            <div className='grid grid-flow-row grid-rows-[minmax(30px,1fr)_60px_45px_40px] gap-5'>
+                          <div className='legend col-span-3 lg:col-span-2'>
+                            <div className='grid grid-flow-row grid-rows-[minmax(30px,1fr)_60px_50px_50px_50px_50px_50px_50px] gap-1'>
                               <div className='date font-bold'>{date}</div>
                               <p className='row-span-2 flex items-center'>
                                 Прогноза
@@ -127,16 +132,37 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                               </p>
                               <p className=''>Облачност</p>
                               <p className=''>Влажност</p>
-                              <p className=''>Атмосфетно налягане</p>
                             </div>
                           </div>
+                          <div className='col-span-7 lg:col-span-8'>
+                          <Tabs
+                          value={0}
+                aria-label='Days'
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: { xs: "20px 100px 20px" , sm: "20px 300px 20px", md: "5% 90% 5%", lg: "0 100% 0"}, // Adjust the number of columns
+                  gap: 1, // Space between tabs
+                  justifyContent: "center",
+                  textAlign: "center",
+                  "& .MuiTabs-flexContainer": {
+                    display: "grid",
+                    gridTemplateColumns: "repeat(8, 100px)",
+                    gap: 0,
+                  },
+                }}
+                variant='scrollable'
+                scrollButtons
+                allowScrollButtonsMobile
+              >
                           {item.forecast &&
                             item.forecast.map((item: any) => {
                               return (
+                                
                                 <div
                                   key={item.dt}
-                                  className='hour grid grid-flow-row grid-rows-[minmax(30px,1fr)_60px_45px_40px] gap-5 text-center justify-center'
+                                  className='hour grid grid-flow-row grid-rows-[minmax(30px,1fr)_60px_50px_50px_50px_50px_50px_50px] gap-1 text-center justify-center'
                                 >
+                                  
                                   <div className='single-hour'>
                                     <p>{`${getDayUTCHours(item.dt)}:00`}</p>
                                   </div>
@@ -150,15 +176,15 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                                             item.weather[0].description.toLowerCase(),
                                             isDay(
                                               item.dt,
-                                              city.sys ?? city.sys.sunrise,
-                                              city.sys ?? city.sys.sunset
+                                              city.sys.sunrise,
+                                              city.sys.sunset
                                             )
                                           ),
                                       }}
                                     ></div>
                                   </div>
                                   <div
-                                    className={`weather flex items-center text-center justify-center text-[14px] ${item.weather[0].description.toLowerCase()}`}
+                                    className={`weather flex items-center text-center justify-center text-[14px] text-wrap ${item.weather[0].description.toLowerCase()}`}
                                     aria-label={`${item.weather[0].main.toLowerCase()}`}
                                   >
                                     <p>{`${getWeatherCondition(
@@ -198,12 +224,13 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                                   <div className='humidity'>
                                       {item.main.humidity} %
                                   </div>
-                                  <div className='pressure'>
-                                      {item.main.pressure} hPa
-                                  </div>
+                                  
                                 </div>
+                                
                               );
                             })}
+                            </Tabs>
+                            </div>
                         </div>
                       </div>
                     </TabPanel>

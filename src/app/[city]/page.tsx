@@ -84,13 +84,13 @@ const CityPage = (props: CityPageProps) => {
   return (
       <div className='container'>
         <div className=' grid grid-cols-12 gap-4'>
-          <div className='forecast-wrapper col-span-9'>
+          <div className='forecast-wrapper col-span-12 lg:col-span-9'>
             <div className='forecast-body'>
-              <div className='grid grid-cols-12 gap-4'>
-                <div className='wrapper raund current-weather col-span-5'>
+              <div className='grid grid-cols-12 md:gap-4'>
+                <div className='wrapper raund current-weather col-span-12 md:col-span-5'>
                   <CurrentWeather forecast={currentForecast} city={cityName || { bg: '' }}/>
                 </div>
-                <div className='wrapper raund three-days-max col-span-7'>
+                <div className='wrapper raund three-days-max col-span-12 md:col-span-7'>
                   <ThreeDays forecast={fiveDaysForecast} />
                 </div>
               </div>

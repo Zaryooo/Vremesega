@@ -13,10 +13,10 @@ export const getWeatherIconPosition = (weatherCondition: string, isDay: boolean)
         case 'shower rain':
             return isDay ? '-200px 0' : '-227px -126px';
         case 'light rain':
-        case 'moderate rain':
             return isDay ? '-155px -68px' : '-227px -126px';
+        case 'moderate rain':
         case 'thunderstorm':
-            return '-300px 0';
+            return isDay ? '-226px -68px' : '-227px -126px';
         case 'snow':
             return '-227px -192px';
         case 'light snow':
@@ -45,7 +45,7 @@ export const getWeatherIconPosition = (weatherCondition: string, isDay: boolean)
       case 'light rain':
           return 'Лек дъжд';
       case 'moderate rain':
-          return 'Умерен дъжд';
+          return 'Дъжд';
       case 'rain':
           return 'Силен дъжд';
       case 'thunderstorm':

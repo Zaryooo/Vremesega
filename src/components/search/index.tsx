@@ -5,11 +5,13 @@ import { Autocomplete, Button, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import cities from '@/data/cities.json';
+import useViewport from '@/hooks/useViewport';
 
 export default function Search() {
 
     const [value, setValue] = React.useState<string>('');
     const [suggest, setSuggest] = React.useState<string[]>([]);
+    const { isMobile } = useViewport();
 
     const {replace} = useRouter();
 
@@ -54,12 +56,11 @@ export default function Search() {
       };
 
     return (
-            <div className='flex justify-around'>
-                <div className='flex items-end min-w-[300px] bg-white'>
+            <div className='grid grid-cols-12'>
+                <div className='col-span-8'>
                   <Autocomplete
                   id="search"	
                   options={suggest}
-                  sx={{ width: 300 }}
                   onInputChange={handleInputChange}	
                   onChange={handleOptionChange}
                   getOptionLabel={(option: string) => option}
@@ -68,9 +69,9 @@ export default function Search() {
     />
                   
                 </div>
-                <Button variant="contained" onClick={() => handleCitySelect(value)} startIcon={<SearchIcon />}>
-                Търси
-              </Button>
+                  <Button variant="contained" className='col-span-4' onClick={() => handleCitySelect(value)} startIcon={<SearchIcon />}>
+                  Търси
+                </Button>
             </div>
     )
 }

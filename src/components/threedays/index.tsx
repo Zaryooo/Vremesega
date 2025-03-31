@@ -4,6 +4,7 @@ import { getMonthInCyrillic } from '@/utils/translate';
 import { getWeatherCondition, getWeatherIconPosition } from '@/utils/weather';
 
 export default function ThreeDaysMax({ forecast }: ForecastProps) {
+  
   // Get forecast for the next 3 days
   const threeDaysMax = forecast ? forecastDays(forecast, 4, 1) : null;
 
