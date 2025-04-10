@@ -79,7 +79,7 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                 value={value}
                 onChange={handleChange}
                 aria-label='Days'
-                className='w-full grid grid-cols-6'
+                className='w-full grid grid-cols-6 justify-center'
                 variant={isMobile ? 'scrollable' : 'fullWidth'}
                 scrollButtons
                 allowScrollButtonsMobile
@@ -110,7 +110,7 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                     <TabPanel key={item.date} value={item.date}>
                       <div className='date-hours pt-2' key={item.date}>
                         <div className='hours grid grid-cols-10'>
-                          <div className='legend col-span-2'>
+                          {!isMobile && <div className='legend col-span-2'>
                             <div className='grid grid-flow-row grid-rows-[minmax(30px,1fr)_60px_50px_50px_50px_50px_50px_50px] gap-1'>
                               <div className='date font-bold'>{date}</div>
                               <p className='row-span-2 flex items-center'>
@@ -127,17 +127,17 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                               <p className=''>Облачност</p>
                               <p className=''>Влажност</p>
                             </div>
-                          </div>
-                          <div className='col-span-8'>
-                            <div className='grid grid-cols-8'>
+                          </div>}
+                          <div className='col-span-10 lg:col-span-8'>
+                            <div className='grid grid-row-8 lg:grid-cols-8'>
                               {item.forecast &&
                                 item.forecast.map((item: any) => {
                                   return (
                                     <div
                                       key={item.dt}
-                                      className='hour grid grid-flow-row grid-rows-[minmax(30px,1fr)_60px_50px_50px_50px_50px_50px_50px] gap-1 text-center justify-center'
+                                      className='hour grid grid-cols-[repeat(4,minmax(0,1fr))] lg:grid-cols-none lg:grid-rows-[minmax(30px,1fr)_60px_50px_50px_50px_50px_50px_50px] gap-1 text-center justify-center'
                                     >
-                                      <div className='single-hour'>
+                                      <div className='single-hour items-center flex justify-start lg:justify-center'>
                                         <p>{`${getDayHours(item.dt)}:00`}</p>
                                       </div>
                                       <div className='my-auto flex items-center'>
@@ -162,10 +162,10 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                                           isDay(item.sys.pod)
                                         )}`}</p>
                                       </div>
-                                      <div className='temp font-bold'>
+                                      <div className='temp font-bold items-center flex justify-center'>
                                         {Math.round(item.main.temp)}°
                                       </div>
-                                      <div className='wind'>
+                                      {!isMobile && <><div className='wind'>
                                         {Math.round(item.wind.speed)} m/s
                                       </div>
                                       <div className='rain-chance'>
@@ -189,7 +189,7 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                                       </div>
                                       <div className='humidity'>
                                         {item.main.humidity} %
-                                      </div>
+                                      </div></>}
                                     </div>
                                   );
                                 })}
