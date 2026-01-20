@@ -18,7 +18,7 @@
     "@types/lodash": "^4.17.7",
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
-    "next": "^15.2.4",
+    "next": "15.2.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "swiper": "^11.2.6"
