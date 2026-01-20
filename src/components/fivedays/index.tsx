@@ -26,7 +26,7 @@ type Snow = {
 
 export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
   const [value, setValue] = React.useState(getNextDate(1).nextDay);
-  const { isMobile } = useViewport();
+  const { isMobile, isMobileLg } = useViewport();
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -79,8 +79,8 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                 value={value}
                 onChange={handleChange}
                 aria-label='Days'
-                className='w-full grid grid-cols-6 justify-center'
-                variant={isMobile ? 'scrollable' : 'fullWidth'}
+                className='w-full grid grid-cols-6 justify-center items-center'
+                variant={isMobileLg ? 'scrollable' : 'fullWidth'}
                 scrollButtons
                 allowScrollButtonsMobile
               >
@@ -111,7 +111,7 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                       <div className='date-hours pt-2' key={item.date}>
                         <div className='hours grid grid-cols-10'>
                           {!isMobile && <div className='legend col-span-2'>
-                            <div className='grid grid-flow-row grid-rows-[minmax(30px,1fr)_60px_50px_50px_50px_50px_50px_50px] gap-1'>
+                            <div className='grid grid-flow-row grid-rows-[minmax(30px,1fr)_60px_70px_50px_50px_50px_50px_50px] gap-1'>
                               <div className='date font-bold'>{date}</div>
                               <p className='row-span-2 flex items-center'>
                                 Прогноза
@@ -135,7 +135,7 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                                   return (
                                     <div
                                       key={item.dt}
-                                      className='hour grid grid-cols-[repeat(4,minmax(0,1fr))] lg:grid-cols-none lg:grid-rows-[minmax(30px,1fr)_60px_50px_50px_50px_50px_50px_50px] gap-1 text-center justify-center'
+                                      className='hour grid grid-cols-[repeat(4,minmax(0,1fr))] lg:grid-cols-none lg:grid-rows-[minmax(30px,1fr)_60px_70px_50px_50px_50px_50px_50px] gap-1 text-center justify-center'
                                     >
                                       <div className='single-hour items-center flex justify-start lg:justify-center'>
                                         <p>{`${getDayHours(item.dt)}:00`}</p>
@@ -162,7 +162,7 @@ export default function FiveDaysForecast({ forecast, city }: ForecastProps) {
                                           isDay(item.sys.pod)
                                         )}`}</p>
                                       </div>
-                                      <div className='temp font-bold items-center flex justify-center'>
+                                      <div className='temp font-bold flex items-center lg:items-start justify-center'>
                                         {Math.round(item.main.temp)}°
                                       </div>
                                       {!isMobile && <><div className='wind'>

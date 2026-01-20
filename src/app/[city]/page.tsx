@@ -84,7 +84,7 @@ const CityPage = (props: CityPageProps) => {
   return (
       <div className='container'>
         <div className=' grid grid-cols-12 gap-4'>
-          <div className='forecast-wrapper col-span-12 lg:col-span-9'>
+          <div className='forecast-wrapper col-span-12'>
             <div className='forecast-body'>
               <div className='grid grid-cols-12 md:gap-4'>
                 <div className='wrapper raund current-weather col-span-12 md:col-span-5'>
@@ -96,11 +96,11 @@ const CityPage = (props: CityPageProps) => {
               </div>
             </div>
           </div>
-          {!isMobile && <div className='wrapper raund side-wrapper col-span-3'>
+          {/* {!isMobile && <div className='wrapper raund side-wrapper col-span-3'>
             <div className='side'>
               <p>Ads</p>
             </div>
-          </div>}
+          </div>} */}
         </div>
         <div className='wrapper raund'>
           <FiveDaysForecast forecast={fiveDaysForecast} city={currentForecast}/>
